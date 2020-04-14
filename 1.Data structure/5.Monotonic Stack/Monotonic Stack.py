@@ -30,8 +30,8 @@ class MS:
             self.stack.append(i % len(self.data))
         return self.result
 
-ms = MS([2,1,2,4,3])
-print(ms.next_greater_element())
-ms = MS([2,1,2,4,3])
-print(ms.next_greater_element_circle())
 
+ms = MS([2, 1, 2, 4, 3])
+print(ms.next_greater_element())
+ms = MS([2, 1, 2, 4, 3])
+print(ms.next_greater_element_circle())
