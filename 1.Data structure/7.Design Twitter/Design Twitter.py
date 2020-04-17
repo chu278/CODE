@@ -66,18 +66,22 @@ class Twitter:
 
     def get_news_feed(self, user_id):
         result = []
+        # 优先队列pq
         pq = queue.PriorityQueue()
         if user_id not in self.user_dict.keys():
             return result
         users = self.user_dict[user_id].follows
+        # pq插入每个tweet_list的第一个元素
         for user in users:
             pq.put(self.user_dict[user].tweet_list.head.next)
         while not pq.empty():
+            # 满足10个结束返回
             if len(result) == 10:
                 break
             twt = pq.get()
             print("----", twt.tweet_id)
             result.append(twt.tweet_id)
+            # 删除弹出的元素，并且将之后的元素接着放到优先队列中比较
             if twt.next is not None:
                 pq.put(twt.next)
         return result
@@ -97,6 +101,7 @@ class Twitter:
             self.user_dict[follower_id].unfollow(followee_id)
 
 
+# time.sleep(0.1)是为了让时间戳不一样，产生时间间隔
 twitter = Twitter()
 twitter.post_tweet(1, 1)
 time.sleep(0.01)
