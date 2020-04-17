@@ -10,6 +10,8 @@ class Tweet:
         self.post_time = int(time.time() * 1000)
         self.next = None
 
+    # 重置小于符号，方便后来的优先队列比较对象大小。由于优先队列默认POP小的元素，所以我们需要设置成POP大的元素（时间越往后，时间戳大）
+    # 所以此处设置为 “>” , 也就是，self.post_time > other.post_time
     def __lt__(self, other):
         return self.post_time > other.post_time
 
